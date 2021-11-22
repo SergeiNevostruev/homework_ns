@@ -163,58 +163,102 @@ console.log(path(pathname));
 // 14. Заканчивается ли строка символами другой строки
 // Создайте метод объекта String endsWith(), который сравнивает подстроку str1 с окончанием исходной строки str и определяет заканчивается ли строка символами подстроки.
 
-// let str = "Каждый охотник желает знать"; 
-// let str1 = "скрипт";
-// let str2 = "знать";
+let str14 = "Каждый охотник желает знать"; 
+let str141 = "скрипт";
+let str142 = "знать";
 
-// String.prototype.endsWith = function(substring) {
-//     ...ваш код...
-// };
+String.endsWith = function(substring) {
+    return str14.endsWith(substring);
+};
+
+console.log(String.endsWith(str142));
+
+
+
 // 15. Подстрока до/после указанного символа
 // Напишите функцию getSubstr(str, char, pos), которая возвращает часть строки, расположенную после или до указанного символа char в зависимости от параметра pos.
 
-// let str = 'Астрономия — Наука о небесных телах';
+// для этого задания неплохо бы иметь хотяб один пример, что функция должна делать.
 
-// function getSubstr(str, char, pos) {
-//     ...ваш код...
-// };
+let str15 = 'Астрономия — Наука о небесных телах';
+
+function getSubstr(str='', char='', pos='') {
+    if (pos.toLowerCase() === 'до') {
+        return str.slice(0, str.indexOf(char));
+    } else if (pos.toLowerCase() === 'после') {
+        return str.slice(str.indexOf(char)+1);
+    } else {
+        return "Ошибка - Некорректные параметры";
+    }
+};
+
+console.log(getSubstr(str15, '—', 'после'));
+console.log(getSubstr(str15, '—', 'до'));
+
 
 // 16. Вставить подстроку в указанную позицию строки
 // Напишите функцию insert(str, substr, pos), которая вставляет подстроку substr в указханную позицию pos строки str. По умолчанию подстрока вставляется в начало строки.
 
-// function insert(str, substr, pos) {
-//     ...ваш код...
-// };
+
+function insert(str, substr='', pos=0) {
+    return `${str.slice(0, pos)}${substr}${str.slice(pos)}`;
+};
+
+console.log(insert('Астрономия — Наука о небесных телах', ' это', pos=12));
+console.log(insert('Астрономия — Наука о небесных телах', 'это '));
 
 // 17. Ограничить длину строки
 // Напишите функцию limitStr(str, n, symb), которая обрезает строку, если она длиннее указанного количества символов n. Усеченная строка должна заканчиваться троеточием «...» (если не задан параметр symb) или заданным символом symb.
 
-// function limitStr(str, n, symb) {
-//     ...ваш код...
-// };
+function limitStr(str, n, symb='...') {
+    if (typeof n === undefined || n === '') return str;
+    if (symb === 'symb') symb = '...';
+    return str.length > n ? `${str.substr(0, n)}${symb}` : str;
+};
+
+console.log(limitStr('Астрономия — Наука о небесных телах', 10, 'symb'));
+console.log(limitStr('Астрономия — Наука о небесных телах', 10));
+console.log(limitStr('Астрономия — Наука о небесных телах'));
+
+
 
 // 18. Поделить строку на фрагменты
-// function cutString(str, n) {
-//     ...ваш код...
-// };
+
+function cutString(str, n) {
+    if (str.length <= n) {
+        return str;
+    } else {
+        return str.slice(0, n)+' '+cutString(str.slice(n), n);
+    }
+};
+
+console.log(cutString('Астрономия', 2));
 
 // 19. Количество вхождений символа в строке
 // Напишите функцию count(str, stringsearch), которая возвращает количество символов stringsearch в строке str.
 
-// let symb = "о", str = "Астрономия это наука о небесных объектах";
-// function count(str, symb) {
-//     ...ваш код...
-// };
+let symb = "о", str19 = "Астрономия это наука о небесных объектах";
+function count(str, symb) {
+    let cnt=0;
+    let pos=-1;
+    while ((pos = str.indexOf(symb, pos + 1)) != -1) {
+            cnt++;
+    }
+    return  cnt;
+};
+
+console.log(count(str19, symb));
 
 // 20. Удалить лишние пробелы из строки
 // Напишите функцию strip(str), которая удаляет все лишние пробелы из строки str.
 
-// let str = "    Max is a good      boy     "; 
+let str20 = "    Max is a good      boy     "; 
 
-// function strip(str) {
-//     ...ваш код...
-// };
+function strip(str) {
+    return str.split(" ").filter(item => item !== '').join(" ");
+};
 
+console.log(strip(str20));
 
 
 
@@ -222,50 +266,171 @@ console.log(path(pathname));
 
 // Напишите функцию cutString(str, n), которая удаляет лишние слова из строки str, оставив в ней n слов.
 
-// let str = "Сила тяжести приложена к центру масс тела"; 
+let str21 = "Сила тяжести приложена к центру масс тела"; 
 
-// function cutString(str, n) {
-//     ...ваш код...
-// };
+function cutString(str, n) {
+    return str.split(" ").filter((el, index) => index < n).join(" ");
+};
+
+console.log(cutString(str21, 3));
 
 
 // 22. Сортировка символов строки по алфавиту
 // Напишите функцию alphabetize(str), которая возвращает строку, отсортировав её символы в алфавитном порядке.
 
-// function alphabetize(str) {
-//     ...ваш код...
-// };
+function alphabetize(str) {
+    return str.split("")
+        .sort(function (a,b) { 
+        a = a.toLowerCase();
+        b = b.toLowerCase();
+        if (a === b) return 0;
+        if (a > b) return 1;
+        return -1;})
+        .join("");
+};
 
+console.log(alphabetize("Сила тяжести приложена к центру масс тела"));
 
 // 23. Найти слово в строке
 // Напишите функцию findWord(word, str), которая проверяет, существует ли в строке str слова word.
 
-// let str = 'abc def ghi jkl mno pqr stu';
+let str23 = 'abc def ghi jkl mno pqr stu';
 
-// function findWord(word, str) {
-//     ...ваш код...
-// };
+function findWord(word, str) {
+    return str.includes(word);
+};
+
+console.log(findWord('de4f', str23));
+console.log(findWord('def', str23));
 
 // 24. Преобразовать строку в массив слов
 
 // Напишите функцию stringToarray(str), которая преобразует строку в массив слов.
 
-// let str = 'Каждый охотник желает знать';
-// function stringToarray(str) {
+let str24 = 'Каждый охотник желает знать';
+function stringToarray(str) {
 
-// // Ваш код
+return str.split(" ");
 
-// };
+};
 
-// let arr = stringToarray(str);
+let arr24 = stringToarray(str24);
+
+console.log(arr24);
 
 // 25. Реализовать объект
 
 // Создать объект с начальным полем title. Добавить поле с ключом description начальным значением строкой. Добавить метод addField, который при вызове добавляет новое поле в объект с переданным именем и значением addField(fieldName, value), добавить метод editField(fieldName, value), который меняет указанное свойство объекта. Добавить метод удаление свойства deleteField(fieldName), удаляющий указанное поле. Добавить и изменить поля с помощью этих методов.
 
+const myObject = {
+    title: "Титульник",
+}
+
+console.log(myObject);
+
+myObject.description = "Начальное значение строки";
+
+console.log(myObject);
+
+myObject.addField = function (fieldName, value) {
+    if (fieldName in this){
+        console.log('Выберите другое имя для свойста');
+        } else {
+            this[fieldName] = value;
+
+        }
+}
+
+console.log(myObject);
+
+myObject.addField('cat', 'Семён');
+
+console.log(myObject);
+
+myObject.editField = function (fieldName, value) {
+    if (fieldName in this){
+    this[fieldName] = value;
+    } else {
+        console.log('Свойста не существует');
+    }
+}
+
+console.log(myObject);
+
+myObject.editField('dog', 'Мурзик');
+
+console.log(myObject);
+
+myObject.editField('cat', 'Мурзик');
+
+console.log(myObject);
+
+myObject.deleteField = function (fieldName) {
+    if (fieldName in this){
+    delete this[fieldName];
+    } else {
+        console.log('Свойста не существует');
+    }
+}
+
+console.log(myObject);
+
+myObject.deleteField('cat');
+
+console.log(myObject);
+
+
+
 // 26.
 // Сделайте функцию getDigitsSum (digit - это цифра), которая параметром принимает целое число и возвращает сумму его цифр.
+
+function getDigitsSum(num) {
+    return ("" + num).split('').reduce((sum, current) => +sum + +current, 0);
+}
+
+console.log(getDigitsSum(2720));
+
 // 27.
 // Найдите все года от 1 до 2020, сумма цифр которых равна 13. Для этого используйте вспомогательную функцию getDigitsSum из предыдущей задачи.
+let countYear=0
+
+for (let i=1; i<=2020; i++) {
+    if (getDigitsSum(i)===13) {
+        // console.log(i); // отключил, т.к. занимает всю консоль
+        countYear++;
+    }
+}
+
+console.log(`Сумма цыфр годов, равная 13, встречается ${countYear} раз`);
+
+
 // 28.
 // Дано число. Сложите его цифры. Если сумма получилась более 9-ти, опять сложите его цифры. И так, пока сумма не станет однозначным числом (9 и менее).
+
+let num28 = 15991;
+
+// Решение рекурсией
+
+function recSumNum (num) {
+    if (getDigitsSum(num)<=9) {
+        return getDigitsSum(num);
+    }   else {
+        return getDigitsSum(getDigitsSum(num));
+    }
+}
+
+console.log(recSumNum (num28));
+
+//решение циклом
+
+function sumNum(num) {
+    for (;;) {
+        if (getDigitsSum(num)<=9) {
+            return getDigitsSum(num);
+        }   else {
+            num = getDigitsSum(num);
+        }
+    }
+}
+
+console.log(sumNum(num28));
