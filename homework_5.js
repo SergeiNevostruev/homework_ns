@@ -407,7 +407,7 @@ console.log(`Сумма цыфр годов, равная 13, встречает
 // 28.
 // Дано число. Сложите его цифры. Если сумма получилась более 9-ти, опять сложите его цифры. И так, пока сумма не станет однозначным числом (9 и менее).
 
-let num28 = 15991;
+let num28 = 155991;
 
 // Решение рекурсией
 
@@ -415,7 +415,7 @@ function recSumNum (num) {
     if (getDigitsSum(num)<=9) {
         return getDigitsSum(num);
     }   else {
-        return getDigitsSum(getDigitsSum(num));
+        return recSumNum(getDigitsSum(num));
     }
 }
 
