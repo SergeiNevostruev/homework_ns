@@ -434,3 +434,72 @@ function sumNum(num) {
 }
 
 console.log(sumNum(num28));
+
+
+29.
+//  Напишите функцию, которая возвращает новый объект без указанных значений.
+
+const without = (obj, ...fields) => {
+    for (let field of fields) {
+    delete obj[field];
+    }
+}
+
+
+const user = {
+	name: "Дмитрий",
+	city: "Нижний Новгород",
+}
+
+
+// without(user, "city", "name") //=>  { name: “Дмитрий” }
+without(user, "city") //=>  { name: “Дмитрий” }
+
+console.log(user);
+
+// Дополнительно: реализовать удаление любого количества полей
+
+
+
+// 30.
+//  Написать функцию, которая проверяет наличие поля в объекте.
+const checkField= (obj, field) => {
+    console.log(field in obj);
+    return field in obj;
+}
+
+
+
+const user1 = {
+	name: "Дмитрий",
+	city: "Нижний Новгород",
+}
+
+
+checkField(user1, "name") //=> true
+checkField(user1, "lastname") // => false
+
+
+
+
+// 31.
+//  Написать функцию, которая принимает число от 1 до 7 и возвращает день недели. Решить с помощью объектов.
+
+const week = {
+    1: 'понедельник',
+    2: 'вторник',
+    3: 'среда',
+    4: 'четверг',
+    5: 'пятница',
+    6: 'суббота',
+    7: 'воскресенье',
+
+    day(numDay) {
+        console.log(this[numDay]);
+        return this;
+    }
+}
+
+week.day(1);
+week.day(6);
+week.day(1).day(3).day(5).day(7);
