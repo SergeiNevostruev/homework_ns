@@ -250,9 +250,9 @@ const calculator = {
     
 calculator.setValues(3,5);
 
-console.log(calculator.a, calculator.b);
-console.log(calculator.sum());
-console.log(calculator.mult());
+// console.log(calculator.a, calculator.b);
+// console.log(calculator.sum());
+// console.log(calculator.mult());
 
 
 
@@ -275,9 +275,9 @@ const calculator2 = {
 
 calculator2.setValues(10,4);
 
-console.log(calculator2.a, calculator2.b);
-console.log(calculator2.diff());
-console.log(calculator2.div());
+// console.log(calculator2.a, calculator2.b);
+// console.log(calculator2.diff());
+// console.log(calculator2.div());
 
 
 // Создать объект пользователя  user1 со свойствам name, age, city, favoriteColor и методами setName, setAge, setCity, setFavoriteColor, которые меняют значения соответствующих свойств. Создать объект второго юзера user2 из существующего объекта user1. Изменить значения всех свойств второго юзера с помощью методов setName, setAge, setCity, setFavoriteColor. Вывести в консоль оба объекта и убедиться, что значения свойств разные.
@@ -308,8 +308,8 @@ user2.setAge(18);
 user2.setCity("Shir");
 user2.setFavoriteColor("white");
 
-console.log(user1);
-console.log(user2);
+// console.log(user1);
+// console.log(user2);
 
 // Реализовать функцию, которая принимает в себя любое количество числовых аргументов и возвращает наименьшее число. (не использовать Math.min).
 
@@ -317,9 +317,9 @@ const funcMin = (...arg) => {
     return arg.reduce((min,next)=> min < next ? min : next, arg[0]);
 }
 
-console.log(funcMin(3,2,5,9,3,7));
+// console.log(funcMin(3,2,5,9,3,7));
 
-console.log(funcMin(-1,3,2,5,-100,9,3,7));
+// console.log(funcMin(-1,3,2,5,-100,9,3,7));
 
 // Исправьте код таким образом, чтобы вывод логов соответствовал комментариями
 const func = (user) => {
@@ -334,7 +334,50 @@ const  firstUser = {
   surName: 'Иванов'
 }
 
-console.log(func(firstUser)) // { name: 'Дмитрий', surName: 'Сидоров' }
+// console.log(func(firstUser)) // { name: 'Дмитрий', surName: 'Сидоров' }
 
-console.log(firstUser) // { name: 'Василий', surName: 'Иванов' }
+// console.log(firstUser) // { name: 'Василий', surName: 'Иванов' }
 
+// Создайте объекты двух персонажей с именами(name) с числовыми характеристиками уровня(level), силы(strength), ловкости(agility) и интелекта(intellect). 
+// Для обоих персонажей создайте метод attack, который рассчитывает и возвращает урон атаки путем сложения силы и ловкости, и метод fireball, который возвращает урон файерболом путем умножения интеллекта на уровень персонажа. Далее создайте метод combo, который возвращает сумму значений, которые возвращают методы  attack и fireball. 
+// После формирования объектов персонажей создайте функцию startFight, которая принимает в себя два объекта и сравнивает результаты вызовов их методов combo и возвращает строку “Победил ИМЯ_ПЕРСОНАЖА”.
+
+class Fighter {
+    // методы класса
+    constructor(name = "Username", level = 1, strength = 1, agility = 1, intellect = 1) { 
+        this.name = name,
+        this.level = level,
+        this.strength = strength,
+        this.agility = agility,
+        this.intellect = intellect
+    }
+
+    attack() { return  this.strength + this.agility}
+    fireball() { return this.level*this.intellect }
+    combo() { return this.attack() + this.fireball()}
+  };
+
+  const raiden = new Fighter ("Raiden", 99, 20, 50, 100);
+//   console.log(raiden);
+//   console.log(raiden.attack());
+//   console.log(raiden.fireball());
+//   console.log(raiden.combo());
+  
+
+  const goro = new Fighter ("Goro", 30, 1000, 20, 4);
+//   console.log(goro);
+//   console.log(goro.attack());
+//   console.log(goro.fireball());
+//   console.log(goro.combo());
+
+
+  const startFight = (fighter1, fighter2 ) => {
+    console.log('Mortal Kombat');
+    setTimeout(() => console.log(`${fighter1.name} vs ${fighter2.name}`), 1000);
+    setTimeout(() => console.log('Fight'), 2000);
+    let winner = (fighter1.combo() > fighter2.combo() ? fighter1.name : fighter2.name);
+    setTimeout(() => console.log(`${winner}'s attacking`), 3000);
+    setTimeout(() => console.log(`${winner} wins!`), 4000);
+  }
+
+  startFight(raiden, goro);
