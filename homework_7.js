@@ -248,7 +248,7 @@ const calculator = {
     },
 }
     
-calculator.setValues(3,5);
+calculator.setValues(0,5);
 
 // console.log(calculator.a, calculator.b);
 // console.log(calculator.sum());
