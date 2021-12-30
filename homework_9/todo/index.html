@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id="apps">
+
+    </div>
+    <script>
+        const dataBase = ['Приготовить завтрак', 'Найти тему диплома', 'Пойти на руботу']
+        const apps = document.querySelector('#apps');
+        let header = document.createElement('div');
+        header.classList.add("header");
+        apps.append(header);
+
+        let title = document.createElement('h1');
+        header.append(title);
+        title.classList.add("title");
+        title.innerText = "Мой список дел";
+
+        let form = document.createElement('form');
+        form.classList.add("form");
+        form.setAttribute("onsubmit", "pressEnter()")
+        form.innerHTML ='<input class="input" type="text" placeholder="Название.."><button type="button" class="button">Добавить</button>';
+        header.append(form);
+
+        const createBtn = form.querySelector('.button');
+        const input = form.querySelector('.input');
+        
+
+        let list = document.createElement('ul');
+        list.classList.add("list");
+        apps.append(list);
+
+        let listItem = document.createElement('li');
+        listItem.classList.add("listItem");
+        listItem.innerHTML ='<input type="checkbox" onclick="itemDone()"><span class="itemtext"></span><button type="button" class="btndel" onclick="delListItem()">X</button>';
+        // let btndel = listItem.querySelector('.btndel');
+        let btndel = listItem.querySelectorAll('.btndel');
+        // btndel.classList.add('b');
+
+
+        dataBase.forEach((el)=> {
+            let newItem = listItem.cloneNode(true);
+            newItem.querySelector('span').innerText = el;            
+            list.append(newItem);
+        })
+        
+
+        function createListItem() {
+             let newItem = listItem.cloneNode(true);
+            newItem.querySelector('span').innerText = input.value;            
+            list.append(newItem);
+            console.log('проба');
+            input.value = '';
+          }
+
+ 
+
+        function delListItem() {
+            event.target.parentNode.remove();
+            console.log('удаление');
+        }
+
+        function itemDone() {
+            event.target.parentNode.querySelector('span').classList.toggle("done");
+            console.log(event.target.parentNode.querySelector('span'));
+        }
+
+        function pressEnter() {
+            event.preventDefault();
+            createListItem();
+        }
+
+        createBtn.addEventListener("click", createListItem );
+
+
+    </script>
+</body>
+</html>

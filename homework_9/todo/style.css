@@ -1,0 +1,35 @@
+.header {
+    padding: 20px 5px;
+    background-color: red;
+    width: 100%;
+}
+
+.title {
+    font-size: 2vh;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.input {
+    width: 80%;
+}
+
+.button {
+    width: 15%;
+}
+
+.b {
+    color: blue;
+}
+
+.done {
+    text-decoration: line-through;
+}

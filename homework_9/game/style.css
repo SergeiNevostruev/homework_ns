@@ -1,0 +1,49 @@
+.app {
+    display: flex;
+    justify-content: center;
+}
+
+.field {
+    width: 600px;
+    height: 600px;
+    background-color: rgba(189, 153, 140, 0.767);
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.card {
+    border-radius: 5px;
+    background-color: cyan;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0);
+    box-shadow: 3px 3px 3px 3px rgba(34, 60, 80, 0.31);
+}
+
+.card span {
+    z-index: -1;
+}
+
+.vision {
+    color: rgb(0, 0, 0);
+    background-color: cadetblue;
+}
+
+.vision span{
+    z-index: 5;
+}
+
+.winText {
+    font-size: 30px;
+    color: rgb(48, 48, 48);
+}
+
+
+.ds-blk{
+    display: block;
+}
